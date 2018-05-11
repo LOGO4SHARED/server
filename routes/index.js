@@ -2,12 +2,14 @@
 
 var express = require('express');
 var router = express.Router();
-const User = require('../schema/userSchema');
-const Server = require('../schema/serverSchema');
+const usersRouter = require('./users');
+const { signUp, signIn } = require ('../controllers/index.controller.js');
+const { isAuth } = require('../middleware/authLogin');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+
+
+router.post('/signup', signUp)
+router.post('/signin', signIn)
 
 module.exports = router;
